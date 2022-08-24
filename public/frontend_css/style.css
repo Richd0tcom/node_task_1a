@@ -840,6 +840,11 @@ input::-ms-input-placeholder {
   /* styles I added*/
   
 }
+#page4 .parag{
+  position:absolute;
+  bottom:10%;
+  width: 100%;
+}
 
 #page4 .createdByName {
   font: 16px "Necto Mono";
@@ -848,6 +853,12 @@ input::-ms-input-placeholder {
   width: -moz-max-content;
   padding-bottom: 4px;
   border-bottom: 1px solid black;
+
+  /* Style I added*/
+  transform: translateX(35px);
+  font-size: 1.5vh; 
+  text-align: center;
+
   
 }
 #page4 .customImgRow img {
@@ -863,6 +874,23 @@ input::-ms-input-placeholder {
     margin-right: unset;
   }
 
+  #page4 .createdByName {
+    font: 16px "Necto Mono";
+    font-weight: 700;
+    width: max-content;
+    width: -moz-max-content;
+    padding-bottom: 4px;
+    border-bottom: 1px solid black;
+    
+  
+    /* Style I added*/
+    
+    text-align: center;
+    transform: translateX(70px); 
+    font-size: 1.5vh;
+    
+    
+  }
 
   
   
