@@ -680,6 +680,7 @@ async function nextQuestion(goBack, goBackFromResponse, fromDependedOn) {
       $("#page4").css("display", "none");
       $("#page3").css("display", "block");
     }
+    
     return await askQuestion(totalQuizQuestions, currentQuestionCounter, true);
   }
 
@@ -806,9 +807,9 @@ async function nextQuestion(goBack, goBackFromResponse, fromDependedOn) {
             $("#page4 .customImgRow .imgRowInner p").append(`${responseHeader}`);
             responseOnGoing = true;
             hasNoResponse = false;
-            // closeResponseTimeout = setTimeout(async () => {
-            //   closeResponse();
-            // }, closeResponseTimeoutCounter);
+            closeResponseTimeout = setTimeout(async () => {
+              closeResponse();
+            }, closeResponseTimeoutCounter);
           }
         } else if (apiQues.answers && apiQues.answers[0].responseBody) {
           $("#page3").css("display", "none");
@@ -880,6 +881,7 @@ async function nextQuestion(goBack, goBackFromResponse, fromDependedOn) {
       }
     }
   }
+  console.trace()
 } // nextQuestion function ends here
 
 function showResponse(responseHead, responseBody, weatherQuestion) {
@@ -935,6 +937,7 @@ function closeResponse() {
       return showPreparingPage();
     }
   }
+  
 } // function closeResponse ends here
 
 async function askQuestion(totalQuizQuestions, counter, fromBack) {
