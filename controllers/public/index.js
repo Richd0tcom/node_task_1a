@@ -231,6 +231,25 @@ app.get("/api/v1/weather-profile", async function (req, res, next) {
   }
 });
 
+
+app.get("/api/v1/terminatequiz", async (req, res, next) =>{
+  try {
+    const msg = await db.terminateconfig.getAll();
+    if(!msg){
+      res.status(404).json({status:"failed", message: "There are no messages"})
+      return
+    }
+
+    return res.status(200).json({ status: "success", message: msg[0] });
+
+  } catch (error) {
+
+    console.error(error);
+    console.log(error.message)
+    return res.status(500).json({ status: "failed", message:"Something went wrong" });
+  }
+});
+
 function calculateSun(sunTemp) {
   let maxSun = 56.7;
   let sun = parseFloat(sunTemp / maxSun) * 100;

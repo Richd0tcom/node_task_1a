@@ -14,6 +14,8 @@ const MemberDashboard = require("./member/Dashboard");
 const getProducts = require("./shopify/getProducts");
 const ShopifyWebhook = require("./shopify/webhook");
 const KlaviyoController = require("./klaviyo/index");
+
+const AdminTerminateConfig = require("./admin/Admin_Terminate_Config")
 module.exports = [
   KlaviyoController,
   Admin_order_controller,
@@ -31,4 +33,5 @@ module.exports = [
   MemberDashboard,
   PublicIndex,
   getProducts,
+  AdminTerminateConfig,
 ];

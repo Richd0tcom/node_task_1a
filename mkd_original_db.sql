@@ -18,6 +18,20 @@ DROP DATABASE IF EXISTS `mkd`;
 CREATE DATABASE IF NOT EXISTS `mkd` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `mkd`;
 
+-- Dumping structure for table mkd.
+DROP TABLE IF EXISTS `terminateconfig`;
+CREATE TABLE IF NOT EXISTS `terminateconfig` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `message` varchar(255) NOT NULL,
+  `counter` int(11) NOT NULL,
+  
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+
+INSERT INTO `terminateconfig` (`id`, `message`,`counter`) VALUES
+	(1, 'You have an allergic reaction to one of our main ingredients in our system. Our current system will not suit you', 10);
+
 -- Dumping structure for table mkd.active
 DROP TABLE IF EXISTS `active`;
 CREATE TABLE IF NOT EXISTS `active` (

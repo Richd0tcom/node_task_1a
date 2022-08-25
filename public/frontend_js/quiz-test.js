@@ -63,6 +63,52 @@ let selectionQuestionTimeoutCounter = 6000;
 let closeResponseTimeoutCounter = 5000;
 let timeout;
 
+
+
+async function checkAllergies(e){
+  console.log("ive been clicked")
+  const dataID = $('.allergy_options').data('id');
+  const dataVal = $('.allergy_options').data("val");
+  // console.log(dataVal)
+  const answers = ["Banana", "Olive", "Sunflowers"];
+
+  
+    
+    
+
+  const terminateQuiz = async() => {
+    console.log("ive been triggerd")
+    const res1 = await fetch(`http://127.0.0.1:3001/api/v1/terminatequiz`)
+    const data = await res1.json()
+    console.log("res1:", data)
+        
+        $("#terminate-overlay").css("visibility", "visible");
+        $(`
+          <h3>${data.message.message}</h3>
+          
+        `).insertBefore("#zz")
+        $(".terminate-message").append(`<h3 class="countdown">${data.message.counter}</h3>`)
+        
+        $(document).ready(() => {
+          const timer = setInterval(() => {
+            const count  = parseInt($('.countdown').html());
+            if(count !== 0){
+              $('.countdown').html(count-1);
+            }else{
+              clearInterval(timer);
+              document.location.href="/";
+            }
+          },1000);
+        })
+  }
+        answers.forEach(answer => {
+          if(answer === dataVal){
+            terminateQuiz();
+          }
+        })
+}
+
+
 const mainImage = $(".main-image-container img");
 fetch(url_preset + "/configurations")
   .then((res) => res.json())
@@ -760,7 +806,7 @@ async function nextQuestion(goBack, goBackFromResponse, fromDependedOn) {
           // if (fullName && fullName !== "You" && fullName.split(" ").length > 1) lastName = fullName.split(" ")[fullName.split(" ").length - 1];
           //   try {
           //     const newProfile = await fetch(url_preset + "/klaviyo/identity", {
-          //       method: "POST",
+          //       method: "",
           //       headers: {
           //         "content-type": "application/json",
           //       },
@@ -1209,12 +1255,12 @@ async function askQuestion(totalQuizQuestions, counter, fromBack) {
     $("#typeSelection .answerInner").html("");
     $("#typeSelection").css("display", "block");
     currentActiveAnswerType = "typeSelection";
-
+ 
     ques.answers.forEach((val, index) => {
       if (val.answer) {
         $("#typeSelection .answerInner").append(`
           <div class="selectionOptions">
-            <button data-val="${val.answer}" data-id="${val.id}" class="selectionBtns selectionBtn" onClick="checkAllergies()">${val.answer}</button>
+            <button data-val="${val.answer}" data-id="${val.id}" class="selectionBtns selectionBtn allergy_options" onClick="checkAllergies()">${val.answer}</button>
           </div>
         `);
       }

@@ -123,4 +123,26 @@
   #page5 .responseRow .responseInner .responseBody p {
     font-size: 13px;
   }
+
+  #terminate-overlay{
+    visibility: hidden;
+  }
+  
+  
+  .terminate-wrapper{
+    width: 100%;
+    background-color: #000;
+    color: #ccc;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .terminate-message{
+    position: relative;
+    top: 50%;
+    text-align: center;
+    transform: translateY(-50%);
+  }
 }
